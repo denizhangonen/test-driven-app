@@ -112,3 +112,60 @@ test('should contain danger class when counter is equal or less than -100', () =
 
   expect(counterEl.className).toBe('danger');
 });
+
+test('should exists a button with title Add 100', () => {
+  render(<Counter />);
+  const add100Btn = screen.getByTestId('btn-add-100');
+
+  expect(add100Btn.textContent).toBe('Add 100');
+});
+
+test('should add 100 when Add 100 button is clicked', () => {
+  render(<Counter />);
+  const add100Btn = screen.getByTestId('btn-add-100');
+  const counterEl = screen.getByTestId('counter');
+
+  fireEvent.click(add100Btn);
+
+  expect(counterEl.textContent).toBe('100');
+});
+
+test('should exists a checkbox initially unchecked', () => {
+  render(<Counter />);
+  const checkboxEl = screen.getByTestId('checkbox') as HTMLInputElement;
+
+  expect(checkboxEl.checked).toEqual(false);
+});
+
+test('should be toggled when checkbox is checked', () => {
+  render(<Counter />);
+  const checkboxEl = screen.getByTestId('checkbox') as HTMLInputElement;
+
+  fireEvent.click(checkboxEl);
+
+  expect(checkboxEl.checked).toEqual(true);
+
+  fireEvent.click(checkboxEl);
+
+  expect(checkboxEl.checked).toEqual(false);
+});
+
+test('should exists a radio button initially unchecked', () => {
+  render(<Counter />);
+  const radioEl = screen.getByTestId('radio') as HTMLInputElement;
+
+  expect(radioEl.checked).toEqual(false);
+});
+
+test('should be toggled when radio is checked', () => {
+  render(<Counter />);
+  const radioEl = screen.getByTestId('radio') as HTMLInputElement;
+
+  fireEvent.click(radioEl);
+
+  expect(radioEl.checked).toEqual(true);
+
+  fireEvent.click(radioEl);
+
+  expect(radioEl.checked).toEqual(false);
+});
